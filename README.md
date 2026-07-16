@@ -9,8 +9,8 @@
 좋은 구조는 직감이 아니라 **근거**에서 시작한다고 생각합니다.<br>
 개발자의 주의에 의존하는 대신, 실수해도 안전한 구조를 설계합니다.
 
-[![Portfolio](https://img.shields.io/badge/포트폴리오-2BD9C4?style=flat-square&logoColor=white)](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf)
-[![Website](https://img.shields.io/badge/chanminkim--k.github.io-0D1117?style=flat-square&logo=github&logoColor=white)](https://chanminkim-k.github.io)
+[![Portfolio](https://img.shields.io/badge/포트폴리오-2BD9C4?style=flat-square&logoColor=white)](https://chanminkim-k.github.io/chanminkim-K/docs/portfolio-chanmin-kim.pdf)
+[![Website](https://img.shields.io/badge/chanminkim--k.github.io-0D1117?style=flat-square&logo=github&logoColor=white)](https://chanminkim-k.github.io/chanminkim-K/)
 [![Email](https://img.shields.io/badge/snoopy0813@naver.com-03C75A?style=flat-square&logo=naver&logoColor=white)](mailto:snoopy0813@naver.com)
 
 </div>
