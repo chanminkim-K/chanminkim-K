@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김찬민 · Backend Engineer</title>
+<meta name="description" content="근거로 선택하고, 검증으로 입증하는 백엔드 엔지니어입니다.">
+<meta name="theme-color" content="#05090F">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --void:     #05090F;
+    --surface:  #0C1721;
+    --raised:   #101E29;
+    --line:     #1B2E3C;
+    --line-dim: #132434;
+
+    --teal:     #2BD9C4;
+    --teal-mid: #14A896;
+    --teal-dim: rgba(43, 217, 196, 0.10);
+
+    --star:     #E6EFF4;
+    --dim:      #7B93A5;
+    --faint:    #4E6577;
+
+    --sans: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--star);
+    font-family: var(--sans);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ═══════════ COSMOS ═══════════ */
+
+  /* ── nebula ─────────────────────────────────── */
+  .nebula { position: fixed; inset: -25%; z-index: 0; pointer-events: none; filter: blur(28px); }
+  .neb { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
+  .neb-1 {
+    width: 72vw; height: 72vw; top: -18vw; left: 40vw;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(43,217,196,.15) 0%, rgba(20,168,150,.06) 40%, rgba(43,217,196,0) 68%);
+    animation: drift1 40s ease-in-out infinite alternate;
+  }
+  .neb-2 {
+    width: 66vw; height: 66vw; top: 40vh; left: -18vw;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(58,96,180,.15) 0%, rgba(58,96,180,.05) 42%, rgba(58,96,180,0) 70%);
+    animation: drift2 52s ease-in-out infinite alternate;
+  }
+  .neb-3 {
+    width: 58vw; height: 58vw; top: 88vh; left: 44vw;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(138,84,190,.12) 0%, rgba(138,84,190,.04) 44%, rgba(138,84,190,0) 70%);
+    animation: drift3 61s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { from { transform: none; } to { transform: translate3d(-6vw, 5vh, 0) scale(1.15); } }
+  @keyframes drift2 { from { transform: scale(1.06); } to { transform: translate3d(7vw, -6vh, 0) scale(1); } }
+  @keyframes drift3 { from { transform: none; } to { transform: translate3d(-5vw, -8vh, 0) scale(1.12); } }
+
+  /* ── starfield canvas ───────────────────────── */
+  #sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; }
+
+  /* ── planets layer ──────────────────────────── */
+  .system { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .body { position: absolute; will-change: transform; }
+
+  .sphere {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  /* day/night terminator + rim light */
+  .sphere::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 118% 78%, rgba(43,217,196,.30) 0%, rgba(43,217,196,0) 26%),
+      radial-gradient(circle at 28% 24%, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 40%),
+      radial-gradient(circle at 72% 66%, rgba(0,0,0,.10) 0%, rgba(0,0,0,.86) 82%);
+  }
+
+  /* ── the gas giant ──────────────────────────── */
+  .giant {
+    width: 62vmin; height: 62vmin;
+    right: -17vmin; top: 46vh;
+  }
+  .giant .sphere {
+    background: #1A2A3A;
+    box-shadow:
+      0 0 90px rgba(43,217,196,.10),
+      0 0 190px rgba(58,96,180,.10);
+  }
+  .giant .bands {
+    position: absolute;
+    inset: -30%;
+    background: repeating-linear-gradient(
+      172deg,
+      #2E4256 0px, #2E4256 14px,
+      #24384A 14px, #24384A 26px,
+      #35506A 26px, #35506A 33px,
+      #1F3244 33px, #1F3244 52px,
+      #2A4358 52px, #2A4358 61px,
+      #1B2C3E 61px, #1B2C3E 84px
+    );
+    opacity: .92;
+    animation: spin-bands 180s linear infinite;
+  }
+  /* the great spot */
+  .giant .spot {
+    position: absolute;
+    width: 22%; height: 11%;
+    left: 20%; top: 56%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 40% 40%, rgba(180,120,90,.55), rgba(120,70,50,.25) 60%, rgba(120,70,50,0) 78%);
+    transform: rotate(-8deg);
+    filter: blur(3px);
+  }
+  @keyframes spin-bands {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-30%); }
+  }
+
+  /* rings */
+  .ring-wrap {
+    position: absolute;
+    inset: -30%;
+    transform: rotateX(74deg) rotate(-16deg);
+    transform-style: preserve-3d;
+  }
+  .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2.6vmin solid transparent;
+    background:
+      linear-gradient(var(--void), var(--void)) padding-box,
+      conic-gradient(from 0deg,
+        rgba(200,220,235,.05) 0deg,
+        rgba(200,220,235,.32) 40deg,
+        rgba(43,217,196,.22) 90deg,
+        rgba(200,220,235,.30) 150deg,
+        rgba(200,220,235,.08) 200deg,
+        rgba(120,150,175,.26) 260deg,
+        rgba(200,220,235,.34) 320deg,
+        rgba(200,220,235,.05) 360deg) border-box;
+    -webkit-mask: radial-gradient(circle, transparent 63%, #000 64%);
+            mask: radial-gradient(circle, transparent 63%, #000 64%);
+  }
+  .ring-2 {
+    inset: 9%;
+    border-width: 1vmin;
+    opacity: .5;
+  }
+  /* front half of the ring passes over the planet */
+  .ring-front {
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+    z-index: 2;
+  }
+  .ring-back { z-index: 0; }
+
+  /* planet shadow cast on the ring */
+  .ring-shadow {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 190deg, rgba(5,9,15,.85) 0deg, rgba(5,9,15,0) 46deg, rgba(5,9,15,0) 320deg, rgba(5,9,15,.7) 360deg);
+    -webkit-mask: radial-gradient(circle, transparent 63%, #000 64%, #000 78%, transparent 79%);
+            mask: radial-gradient(circle, transparent 63%, #000 64%, #000 78%, transparent 79%);
+    z-index: 3;
+  }
+
+  .giant .sphere { z-index: 1; }
+
+  /* ── distant rocky planet ───────────────────── */
+  .rocky {
+    width: 13vmin; height: 13vmin;
+    left: 6vw; top: 128vh;
+  }
+  .rocky .sphere {
+    background:
+      radial-gradient(circle at 34% 30%, #7A5A4A 0%, #5A4033 45%, #3A2822 100%);
+    box-shadow: 0 0 40px rgba(160,110,80,.16);
+  }
+  .rocky .crater {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle at 40% 38%, rgba(0,0,0,.30), rgba(255,255,255,.05) 70%);
+  }
+  .rocky .c1 { width: 22%; height: 22%; left: 26%; top: 32%; }
+  .rocky .c2 { width: 14%; height: 14%; left: 56%; top: 22%; }
+  .rocky .c3 { width: 17%; height: 17%; left: 44%; top: 58%; }
+
+  /* ── ice giant ──────────────────────────────── */
+  .ice {
+    width: 20vmin; height: 20vmin;
+    right: 12vw; top: 208vh;
+  }
+  .ice .sphere {
+    background:
+      radial-gradient(circle at 32% 28%, #4E8FB0 0%, #2E6786 48%, #17384C 100%);
+    box-shadow: 0 0 60px rgba(78,143,176,.20);
+  }
+
+  /* ── moon ───────────────────────────────────── */
+  .moon {
+    width: 7vmin; height: 7vmin;
+    left: 68vw; top: 22vh;
+  }
+  .moon .sphere {
+    background: radial-gradient(circle at 34% 32%, #C8D4DC 0%, #8A9AA6 50%, #47555F 100%);
+    box-shadow: 0 0 24px rgba(200,212,220,.14);
+  }
+
+  /* ── the sun, far behind ────────────────────── */
+  .sun {
+    position: fixed;
+    top: -30vh; left: 50%;
+    width: 140vw; height: 100vh;
+    transform: translateX(-50%);
+    z-index: 0; pointer-events: none;
+    background: radial-gradient(45% 45% at 50% 50%,
+      rgba(43,217,196,.10) 0%, rgba(43,217,196,.03) 40%, rgba(43,217,196,0) 70%);
+  }
+
+  /* ── vignette / depth ───────────────────────── */
+  .depth {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(140% 100% at 50% 0%, rgba(5,9,15,0) 45%, rgba(3,6,11,.55) 100%);
+  }
+
+  /* ═══════════ CONTENT ═══════════ */
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.6875rem; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--dim);
+  }
+  .eyebrow .idx { color: var(--teal-mid); }
+
+  .hero { padding: 116px 0 92px; }
+  .hero-id { display: flex; align-items: baseline; gap: 14px; margin-bottom: 46px; }
+  .hero-id .name { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em; }
+  .hero-id .role { font-family: var(--mono); font-size: 0.75rem; color: var(--dim); }
+
+  .fix { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .fix .glyph {
+    font-size: 0.9375rem; color: var(--teal); line-height: 1;
+    text-shadow: 0 0 14px rgba(43,217,196,.85), 0 0 30px rgba(43,217,196,.45);
+    animation: pulse 4.5s ease-in-out infinite;
+  }
+  .fix .label {
+    font-family: var(--mono); font-size: 0.6875rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--teal); white-space: nowrap;
+  }
+  .fix .trail {
+    height: 1px; flex: 1;
+    background: linear-gradient(to right, rgba(43,217,196,.45), rgba(43,217,196,0));
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+
+  .north-star {
+    font-size: clamp(2.25rem, 6.2vw, 4rem);
+    font-weight: 800; line-height: 1.22;
+    letter-spacing: -0.045em; margin-bottom: 36px;
+    text-shadow: 0 2px 40px rgba(5,9,15,.9);
+  }
+  .north-star em { font-style: normal; color: var(--teal); }
+
+  .hero-sub {
+    font-size: 1.0625rem; color: var(--dim);
+    max-width: 52ch; margin-bottom: 54px;
+  }
+
+  .course {
+    padding: 30px 0; margin-bottom: 54px;
+    border-top: 1px solid var(--line-dim);
+    border-bottom: 1px solid var(--line-dim);
+    backdrop-filter: blur(2px);
+  }
+  .course-label {
+    font-family: var(--mono); font-size: 0.6875rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--faint); margin-bottom: 22px;
+  }
+  .legs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 30px;
+  }
+  .leg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  /* the hop between legs, aligned to the node line */
+  .leg + .leg::before {
+    content: "→";
+    position: absolute;
+    left: -22px;
+    top: 0;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.9375rem;
+    color: var(--line);
+    user-select: none;
+  }
+  .leg .node {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 26px;
+  }
+  .leg .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 9px rgba(43,217,196,.65);
+    flex-shrink: 0;
+  }
+  .leg .ko {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.45;
+  }
+  .leg .en {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--teal-mid);
+    padding-left: 15px;
+    letter-spacing: 0.01em;
+  }
+
+  .cta-row, .card-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.03em; text-decoration: none;
+    padding: 12px 20px; border-radius: 2px;
+    border: 1px solid var(--line);
+    color: var(--star);
+    background: rgba(8,16,24,.5);
+    backdrop-filter: blur(6px);
+    transition: border-color .18s ease, color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover { border-color: var(--teal-mid); color: var(--teal); background: var(--teal-dim); }
+  .btn-primary { background: var(--teal); border-color: var(--teal); color: var(--void); }
+  .btn-primary:hover {
+    background: var(--teal); border-color: var(--teal); color: var(--void);
+    box-shadow: 0 0 26px rgba(43,217,196,.45);
+  }
+
+  .section { padding: 84px 0; border-top: 1px solid var(--line-dim); }
+  .section-head { margin-bottom: 36px; }
+
+  .stack-row {
+    display: grid; grid-template-columns: 170px 1fr; gap: 20px;
+    padding: 18px 0; border-bottom: 1px solid var(--line-dim);
+    align-items: baseline;
+  }
+  .stack-row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .stack-row .label {
+    font-family: var(--mono); font-size: 0.6875rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
+  }
+  .stack-row .items { font-size: 0.9375rem; font-weight: 500; letter-spacing: -0.015em; }
+  .stack-row .items .sep { color: var(--line); margin: 0 5px; }
+
+  .cards { display: flex; flex-direction: column; gap: 22px; }
+  .card {
+    background: rgba(10,19,28,.78);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--teal-mid);
+    border-radius: 2px;
+    padding: 34px 40px;
+  }
+  .card-top {
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .tag {
+    font-family: var(--mono); font-size: 0.625rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--dim); border: 1px solid var(--line);
+    border-radius: 999px; padding: 3px 11px;
+  }
+  .tag-award { color: var(--teal); border-color: var(--teal-mid); }
+  .card h3 {
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 800; letter-spacing: -0.035em;
+    line-height: 1.3; margin-bottom: 8px;
+  }
+  .card-meta { font-family: var(--mono); font-size: 0.6875rem; color: var(--dim); margin-bottom: 22px; }
+  .card-summary { font-size: 0.9375rem; color: var(--dim); margin-bottom: 22px; max-width: 76ch; }
+  .decision {
+    display: flex; gap: 12px; padding: 18px 20px;
+    background: var(--raised); border-radius: 2px; margin-bottom: 24px;
+  }
+  .decision .mark {
+    font-family: var(--mono); font-size: 0.8125rem;
+    color: var(--teal); line-height: 1.55; flex-shrink: 0;
+  }
+  .decision p { font-size: 0.9375rem; line-height: 1.65; letter-spacing: -0.015em; color: var(--star); }
+  .decision strong { color: var(--teal); font-weight: 600; }
+  .decision code {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    color: var(--teal-mid);
+  }
+
+  /* ── work list ──────────────────────────────── */
+  .block-label {
+    font-family: var(--mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 14px;
+  }
+  .work { margin-bottom: 26px; }
+  .work-row {
+    display: grid;
+    grid-template-columns: 148px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(27,46,60,.45);
+  }
+  .work-row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .work-row .area {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--star);
+  }
+  .work-row .what {
+    font-size: 0.8125rem;
+    color: var(--dim);
+    line-height: 1.62;
+  }
+  .work-row .what code {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--teal-mid);
+  }
+
+  .metrics {
+    display: flex; flex-wrap: wrap; gap: 10px 26px;
+    padding-bottom: 26px; margin-bottom: 26px;
+    border-bottom: 1px solid var(--line-dim);
+  }
+  .metric .val {
+    font-family: var(--mono); font-size: 1.0625rem; font-weight: 500;
+    letter-spacing: -0.02em; display: block; line-height: 1.4;
+  }
+  .metric .key {
+    font-family: var(--mono); font-size: 0.625rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
+  }
+  .metric .val .up { color: var(--teal); }
+  .note { font-family: var(--mono); font-size: 0.6875rem; color: var(--faint); }
+
+  .contact { padding: 84px 0 110px; border-top: 1px solid var(--line-dim); }
+  .contact-mail {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 800; letter-spacing: -0.04em;
+    text-decoration: none; color: var(--star);
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 3px; display: inline-block;
+    margin: 12px 0 32px;
+    transition: color .18s ease, border-color .18s ease;
+  }
+  .contact-mail:hover { color: var(--teal); border-color: var(--teal); }
+  .foot { font-family: var(--mono); font-size: 0.6875rem; color: var(--faint); }
+
+  a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  .rise { opacity: 0; transform: translateY(14px); animation: rise .75s cubic-bezier(.22,.61,.36,1) forwards; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .16s; }
+  .d3 { animation-delay: .28s; } .d4 { animation-delay: .40s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise, .reveal, .fix .glyph, .neb, .giant .bands {
+      animation: none !important; transition: none !important;
+      opacity: 1 !important;
+    }
+    .rise, .reveal { transform: none !important; }
+  }
+
+  @media (max-width: 720px) {
+    .hero { padding: 72px 0 60px; }
+    .section { padding: 60px 0; }
+    .contact { padding: 60px 0 80px; }
+    .card { padding: 26px 22px; }
+    .stack-row { grid-template-columns: 1fr; gap: 7px; }
+    .legs { grid-template-columns: 1fr; gap: 18px 0; }
+    .leg + .leg::before { display: none; }
+    .leg .ko { font-size: 0.9375rem; }
+    .btn { padding: 11px 16px; }
+    .fix .label { letter-spacing: 0.14em; }
+    .giant { width: 78vmin; height: 78vmin; right: -30vmin; top: 52vh; }
+    .moon { left: 74vw; top: 18vh; width: 5.5vmin; height: 5.5vmin; }
+    .work-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ COSMOS ═══════ -->
+<div class="nebula" aria-hidden="true">
+  <div class="neb neb-1"></div>
+  <div class="neb neb-2"></div>
+  <div class="neb neb-3"></div>
+</div>
+
+<div class="sun" aria-hidden="true"></div>
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<div class="system" aria-hidden="true">
+
+  <!-- moon, near the top -->
+  <div class="body moon" data-speed="0.16">
+    <div class="sphere"></div>
+  </div>
+
+  <!-- ringed gas giant -->
+  <div class="body giant" data-speed="0.07">
+    <div class="ring-wrap">
+      <div class="ring ring-back"></div>
+      <div class="ring ring-2 ring-back"></div>
+    </div>
+    <div class="sphere">
+      <div class="bands"></div>
+      <div class="spot"></div>
+    </div>
+    <div class="ring-wrap">
+      <div class="ring ring-front"></div>
+      <div class="ring ring-2 ring-front"></div>
+      <div class="ring-shadow"></div>
+    </div>
+  </div>
+
+  <!-- rocky planet -->
+  <div class="body rocky" data-speed="0.22">
+    <div class="sphere">
+      <div class="crater c1"></div>
+      <div class="crater c2"></div>
+      <div class="crater c3"></div>
+    </div>
+  </div>
+
+  <!-- ice giant -->
+  <div class="body ice" data-speed="0.13">
+    <div class="sphere"></div>
+  </div>
+
+</div>
+
+<div class="depth" aria-hidden="true"></div>
+
+<!-- ═══════ HERO ═══════ -->
+<header class="hero">
+  <div class="wrap">
+
+    <div class="hero-id rise d1">
+      <span class="name">김찬민</span>
+      <span class="role">Backend Engineer</span>
+    </div>
+
+    <div class="fix rise d2">
+      <span class="glyph" aria-hidden="true">✦</span>
+      <span class="label">North Star</span>
+      <span class="trail" aria-hidden="true"></span>
+    </div>
+
+    <h1 class="north-star rise d2">
+      근거로 선택하고,<br>
+      <em>검증으로 입증하는</em><br>
+      백엔드 엔지니어입니다.
+    </h1>
+
+    <p class="hero-sub rise d3">
+      좋은 구조는 직감이 아니라 근거에서 시작한다고 생각합니다.
+      트레이드오프를 비교해 선택하고, 그 선택을 데이터와 테스트로 검증합니다.
+    </p>
+
+    <div class="course rise d3">
+      <p class="course-label">Engineering Principles</p>
+      <div class="legs">
+        <div class="leg">
+          <span class="node"><i class="dot"></i><span class="ko">문제를 먼저 정의합니다</span></span>
+          <span class="en">problem first</span>
+        </div>
+        <div class="leg">
+          <span class="node"><i class="dot"></i><span class="ko">트레이드오프를 비교합니다</span></span>
+          <span class="en">compare → decide</span>
+        </div>
+        <div class="leg">
+          <span class="node"><i class="dot"></i><span class="ko">데이터와 테스트로 검증합니다</span></span>
+          <span class="en">decide → verify</span>
+        </div>
+        <div class="leg">
+          <span class="node"><i class="dot"></i><span class="ko">실수에도 안전한 구조를 설계합니다</span></span>
+          <span class="en">safe by design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row rise d4">
+      <a class="btn btn-primary" href="docs/portfolio-chanmin-kim.pdf" target="_blank" rel="noopener">
+        포트폴리오 보기 <span aria-hidden="true">↗</span>
+      </a>
+      <a class="btn" href="https://github.com/chanminkim-K" target="_blank" rel="noopener">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+      <a class="btn" href="mailto:snoopy0813@naver.com">Email</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ═══════ STACK ═══════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">Tech Stack</span></div>
+    <div class="reveal">
+      <div class="stack-row">
+        <span class="label">Language · Framework</span>
+        <span class="items">Java<span class="sep">·</span>Spring Boot<span class="sep">·</span>Spring Data JPA<span class="sep">·</span>Spring Security<span class="sep">·</span>React<span class="sep">·</span>TypeScript</span>
+      </div>
+      <div class="stack-row">
+        <span class="label">Database · Cache</span>
+        <span class="items">MySQL<span class="sep">·</span>Redis</span>
+      </div>
+      <div class="stack-row">
+        <span class="label">Infra · DevOps</span>
+        <span class="items">AWS (EC2 · EKS · RDS)<span class="sep">·</span>Docker<span class="sep">·</span>GitHub Actions<span class="sep">·</span>Prometheus<span class="sep">·</span>Grafana</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PROJECTS ═══════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">Projects</span></div>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="eyebrow"><span class="idx">01</span> &nbsp;Project</span>
+          <span class="tag">실무 · 최신</span>
+        </div>
+        <h3>SaaS 멀티테넌트 LMS 플랫폼</h3>
+        <p class="card-meta">메가존클라우드 인턴십 · 2025.11 – 2026.01 · 팀 7명</p>
+        <p class="card-summary">
+          하나의 플랫폼에서 여러 기업이 독립적으로 서비스를 사용할 수 있도록
+          멀티테넌트 구조를 설계한 SaaS LMS입니다.
+          데이터 격리 · 도메인 무결성 · 동시성 · AI 협업 네 축을 설계하고 검증했습니다.
+        </p>
+        <div class="decision">
+          <span class="mark" aria-hidden="true">▸</span>
+          <p>
+            <strong>주의가 아니라 구조로.</strong>
+            개발자가 <code>tenant_id</code>를 빠뜨려도, 상태를 잘못 바꾸려 해도, 동시 요청이 몰려도
+            구조가 먼저 막도록 설계했습니다. AI 협업까지 같은 원리로 —
+            개인의 프롬프트 역량이 아니라 팀의 표준 컨텍스트가 품질을 보장하게 했습니다.
+          </p>
+        </div>
+
+        <div class="work">
+          <p class="block-label">Work</p>
+          <div class="work-row">
+            <span class="area">멀티테넌트 데이터 격리</span>
+            <span class="what">3단계 방어 구조 설계 — TenantResolver Filter가 서브도메인에서 <code>tenant_id</code>를 추출해 ThreadLocal에 저장, Security Filter가 JWT 클레임과 대조해 불일치 시 403, Hibernate Filter가 모든 Repository Query에 조건을 자동 주입</span>
+          </div>
+          <div class="work-row">
+            <span class="area">도메인 라이프사이클</span>
+            <span class="what">교육 운영 핵심 도메인(Time Schedule) 전담 — 요구사항 분석부터 데이터 모델링, REST API까지. 상태 전이를 엔티티 도메인 메서드로 캡슐화(<code>DRAFT → RECRUITING → ONGOING → CLOSED → ARCHIVED</code>)하고, ValidationRule enum으로 커스텀 제약 19종 관리</span>
+          </div>
+          <div class="work-row">
+            <span class="area">성능 · 동시성</span>
+            <span class="what">고충돌 도메인에 비관적 락 4개, 저충돌 도메인에 <code>@Version</code> 낙관적 락 15개로 락 전략 분리. Projection 8종 · GROUP BY 집계 47개 · Fetch Join 18개로 N+1 차단. 575개 테스트와 멀티스레드 동시성 테스트 2종으로 검증</span>
+          </div>
+          <div class="work-row">
+            <span class="area">AI 협업 체계</span>
+            <span class="what"><code>CLAUDE.md</code> 기반 Context Engineering 표준 설계 — 계층 책임 · DTO/Entity 규칙 · 예외 포맷 · Git/PR 컨벤션 · 프롬프트 템플릿 · AI 작업 절차를 문서화해 7명이 같은 기준으로 LLM 활용</span>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><span class="val">575</span><span class="key">Tests</span></div>
+          <div class="metric"><span class="val">3-Layer</span><span class="key">Isolation</span></div>
+          <div class="metric"><span class="val">19</span><span class="key">Domain Rules</span></div>
+          <div class="metric"><span class="val">4 · 15</span><span class="key">비관 · 낙관 락</span></div>
+        </div>
+        <div class="card-actions">
+          <a class="btn" href="docs/portfolio-chanmin-kim.pdf" target="_blank" rel="noopener">
+            상세 보기 <span aria-hidden="true">↗</span>
+          </a>
+          <span class="note">// 인턴십 산출물로 Repository는 비공개입니다</span>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="eyebrow"><span class="idx">02</span> &nbsp;Project</span>
+          <span class="tag tag-award">★ 최우수상</span>
+        </div>
+        <h3>SaaS 기반 클라우드 ERP</h3>
+        <p class="card-meta">메가존클라우드 SaaS Java 개발자 양성과정 · 2024.05 – 2024.12 · 팀 7명</p>
+        <p class="card-summary">
+          SaaS 기반 클라우드 ERP에서 물류 도메인 개발과 오픈소스 모니터링 구축,
+          Redis 캐싱 전략을 담당했습니다. 3개 팀 중 1위로 최우수상을 수상했습니다.
+        </p>
+        <div class="decision">
+          <span class="mark" aria-hidden="true">▸</span>
+          <p>
+            <strong>Observe → Validate → Improve.</strong>
+            모니터링으로 운영 데이터를 확보하고, K6 부하 테스트로 서비스 경계를 검증한 뒤,
+            정합성 우선 Redis 캐싱으로 DB 병목을 해소했습니다.
+          </p>
+        </div>
+
+        <div class="work">
+          <p class="block-label">Work</p>
+          <div class="work-row">
+            <span class="area">오픈소스 모니터링</span>
+            <span class="what">Helm으로 Prometheus·Grafana 구축, kube-state-metrics와 Node Exporter로 클러스터 내부 지표 수집, CloudWatch Exporter를 추가해 RDS·ALB까지 하나의 대시보드에서 통합 관측 — <code>values.yaml</code>에 필요한 Namespace·Dimension만 직접 매핑해 핵심 지표만 스크랩</span>
+          </div>
+          <div class="work-row">
+            <span class="area">MSA 경계 검증</span>
+            <span class="what">K6(200 VU) 부하 테스트로 응답 시간 · 처리량 · 자원 사용량을 함께 분석해, 설계한 도메인 경계가 실제 트래픽 패턴과 맞는지 검증 (서비스 물리 분리는 팀 공동 수행)</span>
+          </div>
+          <div class="work-row">
+            <span class="area">Redis 캐싱</span>
+            <span class="what">Read-Through / Write-Through 전략. RedisTemplate과 AOP로 커스텀 어노테이션(<code>@RedisCacheable</code>, <code>@RedisCachePut</code>)을 만들어 메서드 단위 동적 TTL 제어, JPA Metamodel로 엔티티 연관관계를 런타임 분석해 정·역방향 Dependency Graph 자동 구성</span>
+          </div>
+          <div class="work-row">
+            <span class="area">물류 도메인</span>
+            <span class="what">도메인 모델링부터 API까지 담당</span>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><span class="val"><span class="up">81% ↓</span></span><span class="key">응답시간</span></div>
+          <div class="metric"><span class="val"><span class="up">92% ↓</span></span><span class="key">실패율</span></div>
+          <div class="metric"><span class="val"><span class="up">4.6×</span></span><span class="key">처리량</span></div>
+          <div class="metric"><span class="val">200 VU</span><span class="key">K6 부하 테스트</span></div>
+        </div>
+        <div class="card-actions">
+          <a class="btn" href="docs/portfolio-chanmin-kim.pdf" target="_blank" rel="noopener">
+            상세 보기 <span aria-hidden="true">↗</span>
+          </a>
+          <a class="btn" href="https://github.com/chanminkim-K/ERPSystem" target="_blank" rel="noopener">
+            Repository <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT ═══════ -->
+<footer class="contact">
+  <div class="wrap">
+    <span class="eyebrow reveal">Contact</span><br>
+    <a class="contact-mail reveal" href="mailto:snoopy0813@naver.com">snoopy0813@naver.com</a>
+    <p class="foot reveal">© 2026 Kim Chanmin · Backend Engineer</p>
+  </div>
+</footer>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ── scroll reveal ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 4) * 60}ms`;
+    io.observe(el);
+  });
+
+  /* ── planet parallax ── */
+  (() => {
+    const bodies = [...document.querySelectorAll('.body')];
+    let y = 0, ticking = false;
+
+    function place() {
+      for (const b of bodies) {
+        const sp = parseFloat(b.dataset.speed || '0.1');
+        b.style.transform = `translate3d(0, ${-y * sp}px, 0)`;
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      y = window.scrollY;
+      if (!ticking) { ticking = true; requestAnimationFrame(place); }
+    }, { passive: true });
+    place();
+  })();
+
+  /* ── starfield + meteors ── */
+  (() => {
+    const canvas = document.getElementById('sky');
+    const ctx = canvas.getContext('2d');
+    let W, H, dpr, stars = [], meteors = [], raf = null, scrollY = 0, timer = null;
+
+    const LAYERS = [
+      { count: 110, size: [0.4, 0.9], speed: 0.010, alpha: [0.10, 0.28], tealRate: 0.04 },
+      { count: 52,  size: [0.7, 1.3], speed: 0.028, alpha: [0.24, 0.52], tealRate: 0.10 },
+      { count: 18,  size: [1.0, 1.7], speed: 0.055, alpha: [0.44, 0.85], tealRate: 0.24 },
+    ];
+    const rand = (a, b) => a + Math.random() * (b - a);
+
+    function build() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      stars = [];
+      for (const L of LAYERS) {
+        for (let i = 0; i < L.count; i++) {
+          stars.push({
+            x: Math.random() * W, y: Math.random() * H,
+            r: rand(L.size[0], L.size[1]), a: rand(L.alpha[0], L.alpha[1]),
+            tw: rand(0.35, 1.3), ph: Math.random() * Math.PI * 2,
+            depth: L.speed, teal: Math.random() < L.tealRate,
+          });
+        }
+      }
+    }
+
+    function spawnMeteor() {
+      const fromLeft = Math.random() < 0.5;
+      meteors.push({
+        x: fromLeft ? rand(-0.1 * W, 0.5 * W) : rand(0.5 * W, 1.1 * W),
+        y: rand(-0.1 * H, 0.3 * H),
+        vx: fromLeft ? rand(4.5, 7) : rand(-7, -4.5),
+        vy: rand(2.2, 3.6),
+        len: rand(90, 180), life: 0, ttl: rand(50, 80),
+      });
+    }
+
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H);
+
+      for (const s of stars) {
+        const y = ((s.y - scrollY * s.depth) % H + H) % H;
+        const tw = 0.78 + 0.22 * Math.sin(t * 0.0009 * s.tw + s.ph);
+        ctx.globalAlpha = s.a * tw;
+        ctx.fillStyle = s.teal ? '#2BD9C4' : '#E6EFF4';
+        ctx.beginPath(); ctx.arc(s.x, y, s.r, 0, Math.PI * 2); ctx.fill();
+      }
+
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        m.x += m.vx; m.y += m.vy; m.life++;
+        const p = m.life / m.ttl;
+        const fade = p < 0.15 ? p / 0.15 : (1 - p) / 0.85;
+        const mag = Math.hypot(m.vx, m.vy);
+        const tx = m.x - (m.vx / mag) * m.len;
+        const ty = m.y - (m.vy / mag) * m.len;
+        const g = ctx.createLinearGradient(m.x, m.y, tx, ty);
+        g.addColorStop(0, `rgba(230,239,244,${0.85 * fade})`);
+        g.addColorStop(0.35, `rgba(43,217,196,${0.28 * fade})`);
+        g.addColorStop(1, 'rgba(43,217,196,0)');
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = g; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(m.x, m.y); ctx.stroke();
+        if (m.life > m.ttl || m.y > H * 1.2) meteors.splice(i, 1);
+      }
+
+      ctx.globalAlpha = 1;
+      raf = requestAnimationFrame(draw);
+    }
+
+    function paintStatic() {
+      ctx.clearRect(0, 0, W, H);
+      for (const s of stars) {
+        ctx.globalAlpha = s.a;
+        ctx.fillStyle = s.teal ? '#2BD9C4' : '#E6EFF4';
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    function start() {
+      build();
+      if (reduce.matches) { paintStatic(); return; }
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(draw);
+      timer = setInterval(() => { if (Math.random() < 0.5) spawnMeteor(); }, 5000);
+    }
+
+    window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+    window.addEventListener('resize', () => { build(); if (reduce.matches) paintStatic(); }, { passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        if (timer) { clearInterval(timer); timer = null; }
+      } else if (!raf && !reduce.matches) {
+        raf = requestAnimationFrame(draw);
+        timer = setInterval(() => { if (Math.random() < 0.5) spawnMeteor(); }, 5000);
+      }
+    });
+
+    start();
+  })();
+</script>
+
+</body>
+</html>
