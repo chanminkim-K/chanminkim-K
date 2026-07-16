@@ -58,7 +58,7 @@
 
 🚀 MVP 개발 결과 **사내 차세대 교육 플랫폼으로 정식 채택**
 
-`575 Tests` `3-Layer Isolation` `19 Domain Rules` — [상세 보기 ↗](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf)
+`575 Tests` `3-Layer Isolation` `19 Domain Rules` — [상세 보기 ↗](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf#page=3)
 
 <br>
 
@@ -68,7 +68,7 @@
 **Observe → Validate → Improve.** 모니터링으로 운영 데이터를 확보하고, K6 부하 테스트로 서비스 경계를 검증한 뒤, 정합성 우선 Redis 캐싱으로 DB 병목을 해소했습니다.
 물류 도메인 개발 · Prometheus·Grafana 모니터링 구축 · MSA 경계 검증 · 동적 TTL 캐싱 설계
 
-`응답시간 81%↓` `실패율 92%↓` `처리량 4.6×` — [상세 보기 ↗](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf) · [Repository ↗](https://github.com/chanminkim-K/ERPSystem)
+`응답시간 81%↓` `실패율 92%↓` `처리량 4.6×` — [상세 보기 ↗](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf#page=10) · [Repository ↗](https://github.com/chanminkim-K/ERPSystem)
 
 ---
 
