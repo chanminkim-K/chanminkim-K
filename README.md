@@ -1,158 +1,107 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Hi%20there,%20I'm%20Chanmin%20👋&fontSize=36&fontColor=fff&animation=fadeIn&fontAlignY=32"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Hi%20there,%20I'm%20Chanmin%20👋&fontSize=36&fontColor=fff&animation=fadeIn&fontAlignY=32"/>
-  <img width="100%" alt="Header" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Hi%20there,%20I'm%20Chanmin%20👋&fontSize=36&fontColor=fff&animation=fadeIn&fontAlignY=32"/>
-</picture>
-
 <div align="center">
-  
-  [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=6AD3F7&center=true&vCenter=true&random=false&width=600&lines=Backend+Developer+%7C+Spring+Boot+Enthusiast;Cloud+Native+%26+Kubernetes+Explorer;Always+Learning%2C+Always+Building+%F0%9F%9A%80)](https://git.io/typing-svg)
+
+# 김찬민 · Kim Chanmin
+
+**Backend Engineer**
+
+### 근거로 선택하고, 검증으로 입증하는 백엔드 엔지니어입니다.
+
+좋은 구조는 직감이 아니라 **근거**에서 시작한다고 생각합니다.<br>
+개발자의 주의에 의존하는 대신, 실수해도 안전한 구조를 설계합니다.
+
+[![Portfolio](https://img.shields.io/badge/포트폴리오-2BD9C4?style=flat-square&logoColor=white)](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf)
+[![Website](https://img.shields.io/badge/chanminkim--k.github.io-0D1117?style=flat-square&logo=github&logoColor=white)](https://chanminkim-k.github.io)
+[![Email](https://img.shields.io/badge/snoopy0813@naver.com-03C75A?style=flat-square&logo=naver&logoColor=white)](mailto:snoopy0813@naver.com)
 
 </div>
 
-<br/>
+---
 
-<div align="center">
+### Engineering Principles
 
 | | |
-|:---|:---|
-| 👤 **Name** | Kim Chanmin (김찬민) |
-| 📍 **Location** | Busan, South Korea 🇰🇷 |
-| 💼 **Current Role** | Backend Developer Intern @ Megazone Cloud |
+|---|---|
+| ✓ **문제를 먼저 정의합니다** | `problem first` |
+| ✓ **트레이드오프를 비교합니다** | `compare → decide` |
+| ✓ **선택은 데이터와 테스트로 검증합니다** | `decide → verify` |
+| ✓ **실수에도 안전한 구조를 설계합니다** | `safe by design` |
 
-</div>
+---
 
-### 👋 About Me
-새로운 기술을 배우고 실제 서비스에 적용하는 것을 즐깁니다.  
-최근에는 멀티테넌시 LMS 플랫폼 개발을 하며  
-대규모 시스템 설계와 클라우드 인프라에 대한 경험을 쌓고 있습니다.
+## Tech Stack
 
-<br/>
+![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![JPA](https://img.shields.io/badge/Spring%20Data%20JPA-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 
-## 🛠️ Tech Stack
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
 
-<div align="center">
+![AWS](https://img.shields.io/badge/AWS%20EC2%20·%20EKS%20·%20RDS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
 
-**Languages**
+---
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+## Projects
 
-**Backend & Framework**
+### 🟢 SaaS 멀티테넌트 LMS 플랫폼 `MZC-LMS`
+> 메가존클라우드 인턴십 · 2025.11 – 2026.01 · 팀 7명 · `Java` `Spring Boot` `JPA` `Spring Security` `MySQL` `React`
 
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
-![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white)
-![JPA](https://img.shields.io/badge/JPA-59666C?style=for-the-badge&logo=hibernate&logoColor=white)
+**주의가 아니라 구조로.** 개발자가 `tenant_id`를 빠뜨려도, 상태를 잘못 바꾸려 해도, 동시 요청이 몰려도 구조가 먼저 막도록 설계했습니다.
+멀티테넌트 3단계 데이터 격리 · 상태 전이 DDD 캡슐화 · 충돌 특성별 락 전략 · Context Engineering 기반 AI 협업 체계
 
-**Frontend**
+🚀 MVP 개발 결과 **사내 차세대 교육 플랫폼으로 정식 채택**
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+`575 Tests` `3-Layer Isolation` `19 Domain Rules` — [상세 보기 ↗](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf)
 
-**Database & Cache**
+<br>
 
-![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+### 🏆 SaaS 기반 클라우드 ERP `OMZ-ERP`
+> 메가존클라우드 SaaS 기반 Java 개발자 양성과정 · 2024.05 – 2024.12 · 팀 7명 · `Java` `Spring Boot` `JPA` `Redis` `AWS EKS` `Prometheus` `Grafana`
 
-**DevOps & Cloud**
+**Observe → Validate → Improve.** 모니터링으로 운영 데이터를 확보하고, K6 부하 테스트로 서비스 경계를 검증한 뒤, 정합성 우선 Redis 캐싱으로 DB 병목을 해소했습니다.
+물류 도메인 개발 · Prometheus·Grafana 모니터링 구축 · MSA 경계 검증 · 동적 TTL 캐싱 설계
 
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+`응답시간 81%↓` `실패율 92%↓` `처리량 4.6×` — [상세 보기 ↗](https://chanminkim-k.github.io/docs/portfolio-chanmin-kim.pdf) · [Repository ↗](https://github.com/chanminkim-K/ERPSystem)
 
-**Monitoring**
+---
 
-![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
-![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
+## Experience & Education
 
-</div>
+| 기간 | | |
+|:---|:---|:---|
+| `2025.11 – 2026.01` | **메가존클라우드** | Ability Training Unit 팀 · 풀스택 개발 인턴 |
+| `2024.05 – 2024.12` | **메가존클라우드 SaaS 기반 Java 개발자 양성과정** | 메가존클라우드 / 부산정보산업진흥원 주관 |
+| `2021.03 – 2025.02` | **동의대학교 응용소프트웨어공학과** | 졸업 · 학점 4.13 / 4.5 |
 
-<br/>
+## Awards
 
-## 📊 GitHub Stats
+| | | |
+|:---|:---|:---|
+| 🏆 | **메가존클라우드 SaaS 기반 Java 개발자 양성과정 최우수상** | SaaS ERP 시스템 설계·구현 프로젝트로 전체 3개 팀 중 최우수 · 2024.12 |
+| 🥉 | **부산디지털혁신아카데미 해커톤(Dev-ton) 아이디어상** | ERP 내 ESG 증빙 데이터 실시간 수집·모니터링 아키텍처 기획안 · 2024.11 |
 
-<div align="center">
+## Certifications
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=chanminkim-K&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=chanminkim-K&layout=compact&langs_count=8&theme=tokyonight&hide_border=true)
-
-![GitHub Streak](https://streak-stats.demolab.com/?user=chanminkim-K&theme=tokyonight&hide_border=true)
-
-<br/>
-
-## 🏆 Highlights
-
-<table>
-  <tr>
-    <td>🥇</td>
-    <td><b>메가존 클라우드</b> SaaS 기반 Java 개발자 양성과정 최우수팀</td>
-    <td>2024.12</td>
-  </tr>
-  <tr>
-    <td>💡</td>
-    <td><b>부산디지털혁신아카데미</b> 해커톤 아이디어상</td>
-    <td>2024.11</td>
-  </tr>
-</table>
-
-<br/>
-
-## 🎯 Featured Projects
-
-<div align="center">
-
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=chanminkim-K&repo=mzc-lp&theme=tokyonight&hide_border=true&cache_seconds=1800)](https://github.com/chanminkim-K/mzc-lp)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=chanminkim-K&repo=ERPSystem&theme=tokyonight&hide_border=true&cache_seconds=1800)](https://github.com/chanminkim-K/ERPSystem)
-
-</div>
-
-### 💡 MZC LMS Platform
-멀티테넌시 기반 B2C 학습 관리 플랫폼
-- Time Schedule 모듈 설계 및 구현
-- 대시보드 통계 API 구축
-- 수강신청 워크플로우 개발
-
-### 🏢 ERP System
-기업 자원 관리 시스템
-
-<br/>
-
-## 📜 Certifications
-
-<div align="center">
-
-| 자격증 | 취득 |
-|:---:|:---:|
-| 정보처리기사 | 2025 |
-| ADsP | 2025 |
-| SQLD | 2025 |
-| 컴퓨터활용능력 1급 | 2022 |
-| JLPT N2 | 2021 |
-
-</div>
-
-<br/>
-
-## 📫 Connect with Me
-
-<div align="center">
-  
-[![Email](https://img.shields.io/badge/Email-snoopy0813@naver.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:snoopy0813@naver.com)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/chanminkim-K)
-
-</div>
-
-<br/>
+| 취득 | | |
+|:---|:---|:---|
+| `2026.04` | **AWS Certified Solutions Architect – Associate** | Amazon Web Services |
+| `2025.09` | **정보처리기사** | 한국산업인력공단 |
+| `2025.06` | **데이터분석준전문가 (ADsP)** | 한국데이터산업진흥원 |
+| `2025.04` | **SQL개발자 (SQLD)** | 한국데이터산업진흥원 |
+| `2022.02` | **컴퓨터활용능력 1급** | 대한상공회의소 |
+| `2021.01` | **JLPT N2** | 일본국제교류기금 |
 
 ---
 
 <div align="center">
-  
-  ![Profile Views](https://komarev.com/ghpvc/?username=chanminkim-K&color=6AD3F7&style=flat-square&label=Profile+Views)
-  
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
-  
+
+📧 **snoopy0813@naver.com**
+
 </div>
